@@ -1,12 +1,14 @@
 export default class Media {
-    constructor(data) {
+    constructor(data, photographerName) {
         this._id = data.id;
         this._photographerId = data.photographerId;
         this._title = data.title;
         this._image = data.image;
+        this._video = data.video;
         this._likes = data.likes;
         this._date = data.date;
         this._price = data.price;
+        this._photographerName = photographerName;
     }
 
     // Accesseurs get
@@ -24,7 +26,11 @@ export default class Media {
     }
 
     get image() {
-        return this._image;
+        return this._image ? `assets/images/Sample Photos/${this._photographerName}/${this._image}` : null;
+    }
+
+    get video() {
+        return this._video ? `assets/images/Sample Photos/${this._photographerName}/${this._video}` : null;
     }
 
     get likes() {

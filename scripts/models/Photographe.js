@@ -36,6 +36,6 @@ export default class Photographer {
     }
 
     get portrait() {
-        return this._portrait;
+        return `assets/images/Sample Photos/Photographers ID Photos/${this._portrait}`;
     }
 }
