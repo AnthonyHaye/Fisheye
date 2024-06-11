@@ -1,12 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;  
+    border: 1px solid black;
+  }
+
 #contact_modal {
     display: none;
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 40px;
+    margin-top: 20px;
+    background-color: var(--color-light-medium);
 }
+
+.photographer_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 50px;
+    /* background-color: aqua; */
+    width: 100%;
+    height: auto;
+}
+
+.articleMedia{
+    width:45%;
+    height: 300px;
+}
+
+
+
+.lienMedia{
+    width:100%;
+    height: 100%;
+}
+
+
+.cardMedia{
+    width:100%;
+    height: 100%;
+}
+
+.photographe_photo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+
+}
+
+.figcaptionMedia{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.populaireContenair{
+    display: flex;
+}
+.nbrLikes{
+    display: flex;
+    align-items: center;
+    background-color: rgb(8, 141, 68);
+}
+
+.fas fa-heart{
+    width: 33px;
+    height: auto;
+
+}
+
+
 
 .contact_button {
     font-size: 20px;
@@ -16,10 +89,12 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--color-primary);
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer;     
 }
+
+
 
 .modal {
     border-radius: 5px;

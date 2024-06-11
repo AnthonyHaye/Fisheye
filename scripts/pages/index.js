@@ -1,46 +1,75 @@
-    async function getPhotographers() {
-        // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-        // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-        let photographers = [
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]
-        // et bien retourner le tableau photographers seulement une fois récupéré
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
+async function main() {
+    console.log("avant");
+
+    try {
+        const response = await fetch("./data/photographers.json");
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+
+        const photographers = data.photographers;
+        const sectionPhotographe = document.querySelector(".photographer_section");
+
+        for (const article of photographers) {
+            console.log(article);
+
+            const photographeElement = document.createElement("article");
+            photographeElement.className = "Photographe_card";
+
+            const lienElement = document.createElement("a");
+            lienElement.className = "vers_page_photographe";
+            lienElement.href = `photographer.html?id=${article.id}`;
+
+            const imagePhotographe = createImageElement(`assets/images/Sample Photos/Photographers ID Photos/${article.portrait}`, "portrait_photographe");
+            imagePhotographe.className = "portrait_photographe"
+            const namePhotographe = createTextElement("h2", article.name, "name_photographe");
+
+            const paysPhotographeElement = document.createElement("div");
+            paysPhotographeElement.className = "paysPhotographe";
+            const cityPhotographe = createTextElement("p", `${article.city}`);
+            cityPhotographe.innerHTML += ",&nbsp;"
+            const countryPhotographe = createTextElement("p", article.country);
+
+            const taglinePhotographe = createTextElement("p", article.tagline, "taglinePhotographe");
+            const prixPhotographe = createTextElement("p", `${article.price} €/jour`, "prixPhotographe");
+
+            
+            paysPhotographeElement.appendChild(cityPhotographe);
+            paysPhotographeElement.appendChild(countryPhotographe);
+
+            lienElement.appendChild(imagePhotographe);
+            lienElement.appendChild(namePhotographe);
+            photographeElement.appendChild(lienElement);
+            photographeElement.appendChild(paysPhotographeElement);
+            photographeElement.appendChild(taglinePhotographe);
+            photographeElement.appendChild(prixPhotographe);
+
+            sectionPhotographe.appendChild(photographeElement);
+        }
+    } catch (error) {
+        console.error("Fetch error: ", error);
     }
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+    console.log("apres");
+}
 
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerTemplate(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
+function createImageElement(src, className) {
+    const img = document.createElement("img");
+    img.src = src;
+    if (className) {
+        img.className = className;
     }
+    return img;
+}
 
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
+function createTextElement(tag, text, className) {
+    const element = document.createElement(tag);
+    element.innerText = text;
+    if (className) {
+        element.className = className;
     }
-    
-    init();
-    
+    return element;
+}
+
+main();
