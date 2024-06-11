@@ -17,8 +17,9 @@
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>
         <section class="photographer_section"></section>
-        
     </main>
+    
+    <!-- Contact Modal -->
     <div id="contact_modal" aria-hidden="true">
         <div class="modal">
             <header>
@@ -34,11 +35,21 @@
             </form>
         </div>
     </div>
-    <!-- Models -->
-    <script type="module" src="scripts/models/Photographe.js" ></script>
-    <script type="module" src="scripts/models/media.js" ></script>
 
-    <script type="module" src="./scripts/pages/photographer.js"></script>
-    <!-- <script src="/scripts/utils/contactForm.js"></script> -->
+    <!-- Player Modal -->
+    <div id="player_modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <!-- Contenu de la modal sera ajouté ici par JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Models -->
+    <script type="module" src="scripts/models/Photographe.js"></script>
+    <script type="module" src="scripts/models/media.js"></script>
+
+    <!-- Template -->
+    <script type="module" src="scripts/templates/PlayerModal.js"></script>
+
+    <script type="module" src="scripts/pages/photographer.js"></script>
 </body>
 </html>

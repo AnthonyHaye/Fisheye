@@ -1,5 +1,6 @@
 import Photographer from '../models/Photographe.js';
 import Media from '../models/media.js';
+import PlayerModal from '../templates/PlayerModal.js'; // Assurez-vous que le chemin est correct
 
 async function main() {
     const params = new URLSearchParams(window.location.search);
@@ -23,15 +24,13 @@ async function main() {
 
         // Instanciation des objets Media
         const mediaObjects = mediaData.map(m => new Media(m, photographer.name));
-        // console.log("========");
-        // console.log(mediaObjects);
-        // console.log("========");
+        const mediaList = mediaObjects.map(media => media.image || media.video);
 
         // Mise à jour de la section des détails du photographe
         updatePhotographerHeader(photographer);
 
         // Mise à jour de la section des médias du photographe
-        updatePhotographerMedia(mediaObjects);
+        updatePhotographerMedia(mediaObjects, mediaList);
 
     } catch (error) {
         console.error("Fetch error: ", error);
@@ -71,21 +70,22 @@ function updatePhotographerHeader(photographer) {
     detailsSection.appendChild(imagePhotographe);
 }
 
-function updatePhotographerMedia(mediaObjects) {
+function updatePhotographerMedia(mediaObjects, mediaList) {
     const sectionPhotographe = document.querySelector(".photographer_section");
     mediaObjects.forEach(media => {
-        const mediaElement = createMediaElement(media);
+        const mediaElement = createMediaElement(media, mediaList);
         if (mediaElement) {
             sectionPhotographe.appendChild(mediaElement);
         }
     });
 }
 
-function createMediaElement(media) {
+function createMediaElement(media, mediaList) {
     const lienMedia = document.createElement("a");
     lienMedia.className = "lienMedia";
     lienMedia.setAttribute('href', '#');
     lienMedia.setAttribute('alt', 'Pas de description pour le moment');
+    lienMedia.dataset.media = media.image || media.video;
 
     const cardMedia = document.createElement("div");
     cardMedia.className = "cardMedia";
@@ -113,7 +113,8 @@ function createMediaElement(media) {
 
     const like = document.createElement("button");
     like.className = "fas fa-heart";
-    like.addEventListener('click', () => {
+    like.addEventListener('click', (event) => {
+        event.stopPropagation();
         // Logic for handling like button click
     });
 
@@ -127,6 +128,9 @@ function createMediaElement(media) {
 
     articleMedia.appendChild(lienMedia);
     articleMedia.appendChild(figcaptionMedia);
+
+    // Ajout du comportement de la modal à la carte média
+    movieCardWithPlayer(lienMedia, mediaList);
 
     return articleMedia;
 }
@@ -158,5 +162,17 @@ function createTextElement(tag, text, className) {
     }
     return element;
 }
+
+function movieCardWithPlayer(cardMedia, mediaList) {
+    console.log("Ajout d'un événement de clic à la carte média");
+    cardMedia.addEventListener('click', (event) => {
+        event.preventDefault();
+        console.log("Carte média cliquée");
+        const player = new PlayerModal(cardMedia.dataset.media, mediaList);
+        player.render();
+    });
+    return cardMedia;
+}
+
 
 main();
