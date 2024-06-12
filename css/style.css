@@ -1,20 +1,10 @@
 @import url("photographer.css");
 
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;  
-    
-    --color-primary: #901C1C;
-    --color-secondary: #DB8876;
-    --color-tertiary: #D3573C;
-    --color-dark: #000;
-    --color-dark-medium: #757575;
-    --color-light: #fff;
-    --color-light-medium: #FAFAFA;
-    --color-label: #312E2E;
-  }
+:root {
+    --color-primary: #901C1C; /* Couleur principale */
+    --color-secondary: #DB8876; /* Couleur secondaire */
+    --color-tertiary: #333; /* Couleur tertiaire */
+}
 
 body {
     font-family: "DM Sans", sans-serif;
@@ -25,8 +15,8 @@ main {
     padding: 0 6rem;
 }
 
-
 header {
+    /* background-color: aqua; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -40,68 +30,87 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--color-primary);
     margin-right: 100px;
 }
 
 .logo {
     height: 50px;
+    /* background-color: #2335d8; */
+}
+
+.logo1 {
+    width: 67%;
+    height: 100%;
     margin-left: 100px;
-}
-
-
-
-.Photographe_card{
-    display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 30%;
-}
-
-.vers_page_photographe{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    /* background-color: #DB8876; */
-    width: 100%;
+    /* background-color: #333; */
     position: relative;
 }
-.portrait_photographe{
+
+/* Ajout de l'animation sous le logo */
+.logo1::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -2px; /* Ajustez cette valeur si nécessaire pour bien positionner la ligne */
+    height: 2px;
+    width: 0; /* Largeur initiale de la ligne */
+    background-color: var(--color-secondary); /* Couleur de la ligne */
+    transition: width 0.2s ease-in-out; /* Animation de la largeur */
+}
+
+.logo1:hover::after {
+    width: 80%; /* Largeur de la ligne au survol */
+}
+
+.Photographe_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+
+.portrait_photographe {
     border-radius: 50%;
     height: 200px;
     width: 200px;
     border: none;
 }
+
 .name_photographe {
     color: var(--color-tertiary);
     font-size: clamp(2.5rem, 3.2vw, 3.2rem);
-    /* position: relative; */
-    
-}  
-/* .name_photographe::after { */
-    .vers_page_photographe::after{
+}
+
+.vers_page_photographe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+}
+
+.vers_page_photographe::after {
     content: '';
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     bottom: 0px;
     height: 2px;
-    width: 0;
+    width: 0%;
     background-color: var(--color-secondary);
-    transition: width .2s ease-in-out;
+    transition: width 0.2s ease-in-out;
 }
 
-/* .name_photographe:hover::after{ */
-    .vers_page_photographe:hover::after{
-    width: 40%;
-} 
+.vers_page_photographe:hover::after {
+    width: 80%;
+}
 
-.paysPhotographe{  
+.paysPhotographe {
     display: flex;
     color: var(--color-primary);
     font-size: clamp(1.8rem, 2vw, 2rem);
 }
-
-

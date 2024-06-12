@@ -24,13 +24,16 @@ async function main() {
 
         // Instanciation des objets Media
         const mediaObjects = mediaData.map(m => new Media(m, photographer.name));
-        const mediaList = mediaObjects.map(media => media.image || media.video);
+        const mediaList = mediaObjects.map(media => ({
+            media: media.image || media.video,
+            title: media.title
+        }));
 
         // Mise à jour de la section des détails du photographe
         updatePhotographerHeader(photographer);
 
         // Mise à jour de la section des médias du photographe
-        updatePhotographerMedia(mediaObjects, mediaList);
+        updatePhotographerMedia(mediaObjects, mediaList, photographer.name);
 
     } catch (error) {
         console.error("Fetch error: ", error);
@@ -80,11 +83,12 @@ function updatePhotographerMedia(mediaObjects, mediaList) {
     });
 }
 
-function createMediaElement(media, mediaList) {
+
+function createMediaElement(media, mediaList, photographerName) {
     const lienMedia = document.createElement("a");
     lienMedia.className = "lienMedia";
     lienMedia.setAttribute('href', '#');
-    lienMedia.setAttribute('alt', 'Pas de description pour le moment');
+    lienMedia.setAttribute('alt', `${media.title} de ${photographerName}`);
     lienMedia.dataset.media = media.image || media.video;
 
     const cardMedia = document.createElement("div");
@@ -147,7 +151,7 @@ function createImageElement(src, className) {
 function createVideoElement(src, className) {
     const video = document.createElement("video");
     video.src = src;
-    video.controls = true; // Adds play/pause controls to the video
+    video.controls = false; // pour maitriser la lecture ou pas
     if (className) {
         video.className = className;
     }
