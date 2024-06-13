@@ -20,6 +20,29 @@
         <div class="photograph-header">
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>
+        <div class="main_content_trie">
+            <h2>Trier par</h2>
+            <div class="trie_section" >
+                <div class="deroule">
+                    <button class="btn_liste" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Trier par">
+                        <span id="current_filter">Titre</span>
+                        <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+                    </button>
+
+                    <ul class="liste deroulante" aria-hidden="true">
+                        <li role="option">
+                            <button type="button" tabindex="-1" aria-label="Trie par titre">Titre</button>
+                        </li>
+                        <li role="option">
+                            <button type="button" tabindex="-1" aria-label="Trie par popularité">Popularité</button>
+                        </li>
+                        <li role="option">
+                            <button type="button" tabindex="-1" aria-label="Trie par date">Date</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <section class="photographer_section"></section>
     </main>
     
