@@ -16,3 +16,7 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM }
 }
 
+// const truc = "blabla";
+// (function(){
+    
+// })()

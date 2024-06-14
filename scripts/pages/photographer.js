@@ -3,7 +3,7 @@ import Media from '../models/media.js';
 // import PlayerModal from '../templates/PlayerModal.js'; 
 import { updatePhotographerHeader } from '../utils/updateHeader.js';
 import { updatePhotographerMedia } from '../utils/updateMedia.js';
-// import { setupDropdown } from '../utils/dropdown.js';
+import { setupDropdown } from '../utils/dropdown.js';
 
 async function main() {
     const params = new URLSearchParams(window.location.search);
@@ -37,6 +37,9 @@ async function main() {
 
         // Mise à jour de la section des médias du photographe
         updatePhotographerMedia(mediaObjects, mediaList, photographer.name);
+        
+        // Configuration du menu déroulant pour le tri
+        setupDropdown(mediaObjects, updatePhotographerMedia);
 
     } catch (error) {
         console.error("Fetch error: ", error);

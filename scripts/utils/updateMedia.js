@@ -1,22 +1,23 @@
 import { createImageElement, createVideoElement, createTextElement } from './createElements.js';
 import { movieCardWithPlayer } from './movieCardWithPlayer.js';
 
-export function updatePhotographerMedia(mediaObjects, mediaList) {
+export function updatePhotographerMedia(mediaObjects) {
     const sectionPhotographe = document.querySelector(".photographer_section");
+    sectionPhotographe.innerHTML = ""; // Clear existing media
     mediaObjects.forEach(media => {
-        const mediaElement = createMediaElement(media, mediaList);
+        const mediaElement = createMediaElement(media, mediaObjects);
         if (mediaElement) {
             sectionPhotographe.appendChild(mediaElement);
+            movieCardWithPlayer(mediaElement.querySelector('.lienMedia'), mediaObjects);
         }
     });
 }
 
-
-function createMediaElement(media, mediaList, photographerName) {
+function createMediaElement(media, mediaList) {
     const lienMedia = document.createElement("a");
     lienMedia.className = "lienMedia";
     lienMedia.setAttribute('href', '#');
-    lienMedia.setAttribute('alt', `${media.title} de ${photographerName}`);
+    lienMedia.setAttribute('alt', `${media.title} par ${media.photographerName}`);
     lienMedia.dataset.media = media.image || media.video;
 
     const cardMedia = document.createElement("div");
@@ -47,7 +48,6 @@ function createMediaElement(media, mediaList, photographerName) {
     like.className = "fas fa-heart";
     like.addEventListener('click', (event) => {
         event.stopPropagation();
-        // Logic for handling like button click
     });
 
     lienMedia.appendChild(cardMedia);
@@ -60,9 +60,6 @@ function createMediaElement(media, mediaList, photographerName) {
 
     articleMedia.appendChild(lienMedia);
     articleMedia.appendChild(figcaptionMedia);
-
-    // Ajout du comportement de la modal à la carte média
-    movieCardWithPlayer(lienMedia, mediaList);
 
     return articleMedia;
 }
