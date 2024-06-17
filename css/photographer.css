@@ -43,20 +43,13 @@
 
 .articleMedia{
     width:45%;
-    height: 300px;
+    height: 350px;
+    /*ackground-color: aqua;*/
 }
-
-
-
-.lienMedia{
-    width:100%;
-    height: 100%;
-}
-
 
 .cardMedia{
     width:100%;
-    height: 100%;
+    height: 300px;
 }
 
 .photographe_photoVideo {
@@ -71,21 +64,52 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    margin-top: 1rem;
 }
 
 .populaireContenair{
     display: flex;
+    width: 20%;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem; /* Espace entre le nombre de likes et le coeur */
 }
 .nbrLikes{
     display: flex;
     align-items: center;
-    background-color: rgb(8, 141, 68);
+    color: var(--color-primary);
+    font-size: 1.5rem;
+   /* background-color: rgb(8, 141, 68);*/
+}
+/* Style pour le bouton de like */
+.fas.fa-heart {
+    font-size: 1.5rem;
+    color: var(--color-secondary); /* Couleur par défaut du coeur non aimé */
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    background: none; /* Supprime le fond */
+    border: none; /* Supprime la bordure */
+    padding: 0;
+    outline: none;
 }
 
-/* .fas fa-heart{
-    width: 33px;
-    height: auto;
-} */
+.fas.fa-heart.liked {
+    color: var(--color-primary); /* Couleur du coeur aimé */
+}
+
+.nbrLikes {
+    font-size: 1.5rem;
+    color: var(--color-primary); 
+}
+
+
+
+ .h2Media{
+    font-weight: 100;
+    color: var(--color-primary);
+ }
+
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -240,7 +264,7 @@ form input {
 .trie_section{
     position: relative;
     height: 100%;
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 .deroule {
     /* z-index: 5;
@@ -250,38 +274,37 @@ form input {
     position: relative;
     display: inline-block;
 }
-.btn_liste {
-    /* display: flex;
+.btn_liste {    
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 150px;
-    background-color: var(--color-primary);
     height: 50px;
-    padding: 15px;
-    font-size: clamp(1.8rem, 2vw, 2rem);
-    color: var(--color-light);
-    cursor: pointer;
-    outline: none;
-    border: none; */
     background-color: #901C1C;
     color: #fff;
-    border: none;
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 1rem;
     display: flex;
     align-items: center;
 }
+
+.btn_liste:hover {
+    background-color: var(--color-secondary);
+}
+
 .btn_liste .fa-chevron-up {
     margin-left: 10px;
 }
 .liste {
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: #901C1C;  
+    border-radius: 5px;  
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    min-width: 160px;
+    min-width: 150px;
     top: 100%;
     left: 0;
 }
@@ -290,7 +313,7 @@ form input {
 }
 .liste button {
     background-color: transparent;
-    color: #333;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     width: 100%;
@@ -298,7 +321,8 @@ form input {
     cursor: pointer;
 }
 .liste button:hover {
-    background-color: #f1f1f1;
+    background-color: var(--color-secondary);
+    border-radius: 5px;
 }
 .deroule[aria-expanded="true"] .liste {
     display: block;
@@ -306,6 +330,34 @@ form input {
 .main_content_trie h2 {
     font-weight: 100;
     font-size: clamp(1.6rem, 1vw, 1.8rem);  
+}
+
+.like-price-info {
+    position: sticky;
+    bottom: 0;
+    left: 68%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 50px;
+    width: 26%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    background-color: var(--color-secondary);    
+}
+
+.like-price-info p {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-label); 
+}
+
+.like-price-info .fas.fa-heart {
+    margin-left: 5px;
+    color: var(--color-label);
 }
 
 

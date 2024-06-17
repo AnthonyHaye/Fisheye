@@ -44,4 +44,10 @@ export default class Media {
     get price() {
         return this._price;
     }
+
+    // Accesseurs set
+
+    set likes(value) {
+        this._likes = value;
+    }
 }

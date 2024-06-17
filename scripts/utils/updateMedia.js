@@ -1,11 +1,12 @@
 import { createImageElement, createVideoElement, createTextElement } from './createElements.js';
 import { movieCardWithPlayer } from './movieCardWithPlayer.js';
+import { toggleLike } from './toggleLike.js';
 
-export function updatePhotographerMedia(mediaObjects) {
+export function updatePhotographerMedia(mediaObjects, updateTotalLikesCallback) {
     const sectionPhotographe = document.querySelector(".photographer_section");
     sectionPhotographe.innerHTML = ""; // Clear existing media
     mediaObjects.forEach(media => {
-        const mediaElement = createMediaElement(media, mediaObjects);
+        const mediaElement = createMediaElement(media, mediaObjects, updateTotalLikesCallback);
         if (mediaElement) {
             sectionPhotographe.appendChild(mediaElement);
             movieCardWithPlayer(mediaElement.querySelector('.lienMedia'), mediaObjects);
@@ -13,7 +14,7 @@ export function updatePhotographerMedia(mediaObjects) {
     });
 }
 
-function createMediaElement(media, mediaList) {
+function createMediaElement(media, mediaList, updateTotalLikesCallback) {
     const lienMedia = document.createElement("a");
     lienMedia.className = "lienMedia";
     lienMedia.setAttribute('href', '#');
@@ -46,8 +47,13 @@ function createMediaElement(media, mediaList) {
 
     const like = document.createElement("button");
     like.className = "fas fa-heart";
+    like.setAttribute('aria-label', 'like button');
+    if (media.liked) {
+        like.classList.add('liked');
+    }
     like.addEventListener('click', (event) => {
         event.stopPropagation();
+        toggleLike(media, nbrLike, like, updateTotalLikesCallback);
     });
 
     lienMedia.appendChild(cardMedia);
