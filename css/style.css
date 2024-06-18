@@ -81,7 +81,8 @@ h1 {
 
 .name_photographe {
     color: var(--color-tertiary);
-    font-size: clamp(2.5rem, 3.2vw, 3.2rem);
+    font-size: 2rem;
+    padding-top: 10px;
 }
 
 .vers_page_photographe {

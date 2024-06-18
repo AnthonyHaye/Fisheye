@@ -47,7 +47,7 @@ function createMediaElement(media, mediaList, updateTotalLikesCallback) {
 
     const like = document.createElement("button");
     like.className = "fas fa-heart";
-    like.setAttribute('aria-label', 'like button');
+    like.setAttribute('aria-label', `Aimer ${media.title}`);
     if (media.liked) {
         like.classList.add('liked');
     }

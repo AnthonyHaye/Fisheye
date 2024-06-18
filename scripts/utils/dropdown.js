@@ -1,5 +1,4 @@
 import { sortMedia } from './sortMedia.js';
-import { updatePhotographerMedia } from './updateMedia.js';
 import { movieCardWithPlayer } from './movieCardWithPlayer.js';
 
 /*configure les éléments de la liste déroulante pour le tri des médias.
@@ -33,8 +32,11 @@ export function setupDropdown(mediaObjects, updateMediaCallback) {
 }
 
 function toggleDropdown(expanded) {
-    const dropdown = document.querySelector('.deroule');
-    dropdown.setAttribute('aria-expanded', expanded);
-    document.querySelector('.liste').setAttribute('aria-hidden', !expanded);
+    const dropdown = document.querySelector('.deroule'); // Sélectionne l'élément du menu déroulant
+    const btnListe = document.querySelector('.btn_liste'); // Sélectionne le bouton de liste
+    dropdown.setAttribute('aria-expanded', expanded); // Définit l'attribut aria-expanded
+    btnListe.setAttribute('aria-expanded', expanded); // Définit l'attribut aria-expanded sur le bouton
+    document.querySelector('.liste').setAttribute('aria-hidden', !expanded); // Définit l'attribut aria-hidden sur la liste
 }
+
 
