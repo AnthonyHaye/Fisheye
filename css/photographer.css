@@ -118,6 +118,9 @@
     border-radius: 5px;
     cursor: pointer;     
 }
+.contact_button:hover {
+    background-color: var(--color-secondary);
+}
 
 /* Styles pour le modal de contact */
 .modal-overlay {
@@ -133,14 +136,14 @@
 }
 
 .modal {
-    background-color: #fff;
+    background-color: #DB8876;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 500px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
-
 .modal header {
     display: flex;
     justify-content: space-between;
@@ -149,15 +152,70 @@
 }
 
 .modal header h2 {
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    font-size: 1.5rem;
 }
-
+.modal form {
+    display: flex;
+    flex-direction: column;
+}
+.modal form div {
+    margin-bottom: 15px;
+}
+.modal form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.modal form input,
+.modal form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.modal form textarea {
+    resize: vertical;
+    height: 100px;
+}
+.modal form .contact_button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+    font-size: 1rem;
+    transition: all 0.5s ease;
+}
+.modal form .contact_button:hover {
+    background-color: var(--color-primary);
+    border: 3px solid var(--color-light);
+}
+.modal form .contact_button:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px rgba(144, 28, 28, 0.7);
+}
 .close-modal {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    border-radius: 1rem;    
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
     cursor: pointer;
+    color: white;
+    transition: all 0.5s ease;
 }
+.close-modal:hover {
+    color: var(--color-primary);
+    border-radius: 1rem;
+    border: 3px solid var(--color-light);
+}
+
 
 
 /*********************Modal player***********************/

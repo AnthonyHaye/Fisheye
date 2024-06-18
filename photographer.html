@@ -23,7 +23,9 @@
     <main id="main">
         <div class="photograph-header" role="region" aria-labelledby="photograph-header-title">
             <h2 id="photograph-header-title" class="sr-only">Détails du photographe</h2>
-            <button class="contact_button" id="contactButton" onclick="displayModal()">Contactez-moi</button>
+            <!-- <button class="contact_button" id="contactButton" onclick="displayModal()">Contactez-moi</button> -->
+            <button class="contact_button" data-photographer-name="Ellie-Rose Wilkens" onclick="displayModal()">Contactez-moi</button>
+
         </div>
         <div class="main_content_trie"  role="region" aria-labelledby="trie-section-title" >
             <h2 id="trie-section-title">Trier par</h2>
@@ -64,8 +66,10 @@
     <div id="contact_modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-title">
         <div class="modal">
             <header>
-                <h2 id="contact-modal-title">Contactez-moi</h2>
-                <img src="assets/icons/close.svg" class="close-modal" alt="Fermer" role="button" onclick="closeModal()">
+                <h2 id="contact-modal-title">Contactez-moi <span id="photographer-name"></span></h2>                
+                <!-- <img src="assets/icons/close.svg" class="close-modal" alt="Fermer" role="button" onclick="closeModal()"> -->
+                <button class="close-modal" aria-label="Fermer la fenêtre" onclick="closeModal()">&times;</button>
+       
             </header>
             <form id="contactForm">
                 <div>

@@ -1,4 +1,5 @@
 import { createImageElement, createTextElement } from './createElements.js';
+import { displayModal } from './contactForm.js';
 
 export function updatePhotographerHeader(photographer) {
     const detailsSection = document.querySelector(".photograph-header");
@@ -31,4 +32,6 @@ export function updatePhotographerHeader(photographer) {
 
     detailsSection.appendChild(contactBtn);
     detailsSection.appendChild(imagePhotographe);
+
+    contactBtn.addEventListener('click', () => displayModal(photographer.name));
 }
