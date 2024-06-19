@@ -12,6 +12,7 @@
     --color-light: #fff;
     --color-light-medium: #FAFAFA;
     --color-label: #312E2E;
+    --rouge-btn : red;
       
   }
 
@@ -192,6 +193,37 @@
     font-size: 1rem;
     transition: all 0.5s ease;
 }
+.formData {
+    margin-bottom: 5px;
+}
+.formData[data-error]::after {
+content: attr(data-error);
+font-size: clamp(1rem, 1.2vw, 1.2rem);
+color: var(--rouge-btn);
+display: block;
+margin-top: 7px;
+margin-bottom: 7px;
+text-align: right;
+line-height: 0.3;
+opacity: 0;
+transition: 1s;
+}
+.formData[data-error-visible="true"]::after {
+opacity: 1;
+}
+.formData[data-error-visible="true"] .text-control {
+border: 10px solid var(--rouge-btn);
+animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+} 
+@keyframes headshake {
+    25% {
+      transform: translateX(1%);
+    }
+    75% {
+      transform: translateX(-1%);
+    }
+}
+
 .modal form .contact_button:hover {
     background-color: var(--color-primary);
     border: 3px solid var(--color-light);
