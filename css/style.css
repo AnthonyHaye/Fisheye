@@ -117,3 +117,7 @@ h1 {
     color: var(--color-primary);
     font-size: clamp(1.8rem, 2vw, 2rem);
 }
+
+.sr-only{
+    display:none;
+}
