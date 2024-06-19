@@ -8,36 +8,31 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <!-- CDN Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <a href="./index.html">
+        <a href="./index.html" aria-label="Retour à la page d'accueil">
             <div class="logo1">
-                 <img src="assets/images/logo.png" alt="Fisheye Retour page d'accueil" aria-label="Retour à la page d'accueil" class="logo">
+                <img src="assets/images/logo.png" alt="Fisheye Retour page d'accueil" class="logo">
             </div>
         </a>
     </header>
     <main id="main">
         <div class="photograph-header" role="region" aria-labelledby="photograph-header-title">
             <h2 id="photograph-header-title" class="sr-only">Détails du photographe</h2>            
-            <!-- <button class="contact_button" id="contactButton" onclick="displayModal()">Contactez-moi</button> -->
-            <!-- <button class="contact_button" data-photographer-name="Ellie-Rose Wilkens" onclick="displayModal()">Contactez-moi</button> -->
-            <button class="contact_button" data-photographer-name="Ellie-Rose Wilkens" >Contactez-moi</button>
-
+            <button class="contact_button" aria-label="Contactez-moi Ellie-Rose Wilkens">Contactez-moi</button>
         </div>
-        <div class="main_content_trie"  role="region" aria-labelledby="trie-section-title" >
+        <div class="main_content_trie" role="region" aria-labelledby="trie-section-title">
             <h2 id="trie-section-title">Trier par</h2>
-            <div class="trie_section" >
+            <div class="trie_section">
                 <div class="deroule" role="combobox" aria-expanded="false" aria-haspopup="listbox">
-                    <button class="btn_liste" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Trier par">
+                    <button class="btn_liste" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter-options" aria-label="Trier par">
                         <span id="current_filter">Titre</span>
                         <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
-                        <!-- <span class="fa-solid fa-chevron-down" aria-hidden="true"></span> -->
                     </button>
-
                     <ul class="liste deroulante" role="listbox" aria-labelledby="current_filter" aria-hidden="true" id="filter-options">
                         <li role="option">
                             <button type="button" tabindex="-1" aria-label="Trie par titre">Titre</button>
@@ -49,11 +44,10 @@
                             <button type="button" tabindex="-1" aria-label="Trie par date">Date</button>
                         </li>
                     </ul>
-
                 </div>
             </div>            
         </div>        
-        <section class="photographer_section" role="region" aria-labelledby="photographer-section-title">
+        <section class="photographer_section" aria-labelledby="photographer-section-title">
             <h2 id="photographer-section-title" class="sr-only">Médias du photographe</h2>
         </section>
         <!-- Like et prix Info -->
@@ -62,7 +56,6 @@
             <p id="price">350€ / jour</p>
         </aside>   
     </main>
-    
     <!-- Contact Modal -->
     <div id="contact_modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-title">
         <div class="modal">
@@ -70,32 +63,29 @@
                 <h2 id="contact-modal-title">Contactez-moi 
                     <span id="photographer-name"></span>
                 </h2>                
-                <!-- <img src="assets/icons/close.svg" class="close-modal" alt="Fermer" role="button" onclick="closeModal()"> -->
                 <button class="close-modal" aria-label="Fermer la fenêtre" >&times;</button>
             </header>
-            
             <form novalidate id="contactForm">
                 <div class="formData">
                     <label for="prenom">Prénom</label>
-                    <input class="text-control" id="prenom" name="prenom" type="text" >                    
+                    <input class="text-control" id="prenom" name="prenom" type="text">                    
                 </div>
                 <div class="formData">
                     <label for="nom">Nom</label>
-                    <input class="text-control"id="nom" name="nom" type="text">
+                    <input class="text-control" id="nom" name="nom" type="text">
                 </div>
                 <div class="formData">
                     <label for="email">Email</label>
-                    <input class="text-control" id="email" name="email" type="email" >
+                    <input class="text-control" id="email" name="email" type="email">
                 </div>
                 <div class="formData">
                     <label for="message">Message</label>
-                    <textarea class="text-control" id="message" name="message" ></textarea>
+                    <textarea class="text-control" id="message" name="message"></textarea>
                 </div>
-                <button type="submit" class="contact_button" value="Submit Form">Envoyer</button>
+                <button type="submit" class="contact_button" aria-label="Envoyer le message">Envoyer</button>
             </form>
         </div>
     </div>
-
     <!-- Player Modal -->
     <div id="player_modal" class="modalPlayer" aria-hidden="true" role="dialog" aria-labelledby="player-modal-title">
         <div class="modal-content">
@@ -103,17 +93,14 @@
             <!-- Contenu de la modal sera ajouté ici par JavaScript -->
         </div>
     </div>
-
-    
-    
     <!-- Models -->
     <script type="module" src="scripts/models/Photographe.js"></script>
     <script type="module" src="scripts/models/media.js"></script>
-
     <!-- Template -->
     <script type="module" src="scripts/templates/PlayerModal.js"></script>
-
+    <!-- pages -->
     <script type="module" src="scripts/pages/photographer.js"></script>
+    <!-- utils -->
     <script type="module" src="scripts/utils/contactForm.js"></script>
 </body>
 </html>
