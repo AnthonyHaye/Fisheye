@@ -10,7 +10,7 @@ export function createImageElement(src, className) {
 export function createVideoElement(src, className) {
     const video = document.createElement("video");
     video.src = src;
-    video.controls = false; // pour maitriser la lecture ou pas
+    video.controls = false;
     if (className) {
         video.className = className;
     }

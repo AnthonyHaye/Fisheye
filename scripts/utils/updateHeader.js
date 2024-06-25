@@ -2,11 +2,17 @@ import { createImageElement, createTextElement } from './createElements.js';
 import { displayModal } from './contactForm.js';
 
 export function updatePhotographerHeader(photographer) {
+    console.log(photographer);
     const detailsSection = document.querySelector(".photograph-header");
     const contactBtn = document.querySelector(".contact_button");
 
+    // Correction du chemin d'accès de l'image
+    const imagePath = `assets/images/Sample Photos/Photographers ID Photos/${photographer.portrait}`;
+    const imagePhotographe = createImageElement(imagePath, "portrait_photographe");
+    
+    console.log(imagePhotographe);
+
     const namePhotographe = createTextElement("h2", photographer.name, "name_photographe");
-    const imagePhotographe = createImageElement(photographer.portrait, "portrait_photographe");
 
     const paysPhotographeElement = document.createElement("div");
     paysPhotographeElement.className = "paysPhotographe";

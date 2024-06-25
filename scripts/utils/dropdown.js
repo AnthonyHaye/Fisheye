@@ -5,7 +5,7 @@ import { movieCardWithPlayer } from './movieCardWithPlayer.js';
     mediaObjects : Liste des objets média.
     updateMediaCallback : Fonction de rappel pour mettre à jour l'affichage des médias après le tri.*/
 
-
+    
 export function setupDropdown(mediaObjects, updateMediaCallback) {
     const sortOptions = document.querySelectorAll('.liste button');
     sortOptions.forEach(button => {
@@ -21,6 +21,10 @@ export function setupDropdown(mediaObjects, updateMediaCallback) {
             sectionPhotographe.querySelectorAll('.lienMedia').forEach((mediaElement, index) => {
                 movieCardWithPlayer(mediaElement, sortedMedia);
             });
+
+            // Masquer l'option sélectionnée
+            sortOptions.forEach(btn => btn.classList.remove('hidden'));
+            event.target.classList.add('hidden');
         });
     });
 
@@ -38,5 +42,3 @@ function toggleDropdown(expanded) {
     btnListe.setAttribute('aria-expanded', expanded); // Définit l'attribut aria-expanded sur le bouton
     document.querySelector('.liste').setAttribute('aria-hidden', !expanded); // Définit l'attribut aria-hidden sur la liste
 }
-
-

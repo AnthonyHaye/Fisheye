@@ -26,9 +26,13 @@ function createMediaElement(media, mediaList, updateTotalLikesCallback) {
 
     let mediaElement;
     if (media.image) {
-        mediaElement = createImageElement(media.image, "photographe_photoVideo");
+        const imagePath = `${media.image}`;
+        mediaElement = createImageElement(imagePath, "photographe_photoVideo");
     } else if (media.video) {
-        mediaElement = createVideoElement(media.video, "photographe_photoVideo");
+        const videoPath = `${media.video}`;
+        mediaElement = createVideoElement(videoPath, "photographe_photoVideo");
+        mediaElement.setAttribute('tabindex', '0'); // Rendre l'élément vidéo focusable
+        mediaElement.setAttribute('title', media.title); // Ajouter un titre pour l'accessibilité
     }
 
     const titreMedia = createTextElement("p", media.title, "media_title");
@@ -39,14 +43,15 @@ function createMediaElement(media, mediaList, updateTotalLikesCallback) {
     const figcaptionMedia = document.createElement("figcaption");
     figcaptionMedia.className = "figcaptionMedia";
 
-    const h2Media = document.createElement("h2");
+    const h2Media = document.createElement("h2");       
     h2Media.className = "h2Media";
 
     const PopulaireContenair = createTextElement("div", "", "populaireContenair");
     const nbrLike = createTextElement("p", media.likes, "nbrLikes");
+    
 
     const like = document.createElement("button");
-    like.className = "fas fa-heart";
+    like.className = "fas fa-heart like-button";
     like.setAttribute('aria-label', `Aimer ${media.title}`);
     if (media.liked) {
         like.classList.add('liked');
