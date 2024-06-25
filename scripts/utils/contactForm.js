@@ -1,111 +1,88 @@
-// contactForm.js
+// Exportation de la fonction openCloseFormContact
+export const openCloseFormContact = () => {
+    // Sélection du bouton de contact
+    const contactBtn = document.querySelector(".contact_button");
+    // Sélection de la modale de contact
+    const contactModal = document.querySelector("#contact_modal");
+    // Sélection du bouton de fermeture de la modale
+    const closeModal = document.querySelector(".close-modal");
+  
+    // Ajout d'un écouteur d'événement au bouton de contact pour afficher la modale
+    contactBtn.addEventListener("click", () => {
+      contactModal.style.display = "flex";
+      closeModal.focus(); // Mise au focus du bouton de fermeture
+    });
+  
+    // Ajout d'un écouteur d'événement au bouton de fermeture pour masquer la modale
+    closeModal.addEventListener("click", () => contactModal.style.display = "none");
+  };
+  
 
-// Ajouter un écouteur d'événement pour ouvrir le modal de contact
-document.querySelector('.contact_button').addEventListener('click', () => {
-  const photographerName = document.querySelector('.contact_button').dataset.photographerName;
-  displayModal(photographerName);
-});
-
-// Ajouter un écouteur d'événement pour fermer le modal de contact
-document.querySelector('.close-modal').addEventListener('click', closeModal);
-
-export function displayModal(photographerName) {
-  const modal = document.getElementById('contact_modal');
-  const modalTitle = document.getElementById('photographer-name');
-
-  if (modal && modalTitle) {
-      // Met à jour le titre du modal avec le nom du photographe
-      modalTitle.textContent = photographerName;
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden'; // Empêche le défilement de l'arrière-plan
-  }    
-}
-
-export function closeModal() {
-  const modal = document.getElementById('contact_modal');
-  modal.style.display = 'none';
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = 'auto'; // Réactive le défilement de l'arrière-plan
-}
-
-// Formulaire querySelector("#identifiant")
-const form = document.querySelector('form');
-const prenom = document.querySelector('#prenom');
-const nom = document.querySelector('#nom');
-const email = document.querySelector('#email');
-const messagePourPhotographe = document.querySelector('#message');
-
-// Regex Règles de validation
-const regexNom = /^([A-Za-zÀ-ÿ|\s]{2,15})?([-]{0,1})?([A-Za-zÀ-ÿ|\s]{2,15})$/;
-const regexEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const regexMessagePourPhotographe = /^.{10,100}$/;
-
-// Les messages d'erreurs
-const message = {
-MessPrenom: 'Veuillez entrer plus de 2 caractères',
-MessNom: 'Veuillez entrer plus de 2 caractères',
-MessEmail: 'Veuillez renseigner une adresse mail valide.',
-MessMessagePourPhotographe: 'Vous devez entre 10 et 100 caractères.',
-};
-
-// // Ajouter un écouteur d'événement pour soumettre le formulaire
-// document.getElementById('contactForm').addEventListener('submit', function(event) {
-//   event.preventDefault();
-//   alert('Message envoyé !');
-//   closeModal();
-// });
-
-// Customize les erreurs
-const setErrorMessage = (element, message) => {
-  element.parentElement.setAttribute('data-error-visible', 'true');
-  element.parentElement.setAttribute('data-error', message);
-}
-
-const hideErrorMessage = element => {
-  element.parentElement.setAttribute('data-error-visible', '');
-  element.parentElement.setAttribute('data-error', '');
-}
-
-function checkInputValue(regex, element, message) {
-  if (!regex.test(element.value)) {
-      setErrorMessage(element, message);
-      return false;
-  }
-  hideErrorMessage(element);
-  return true; 
-}
-
-// Vérifie les entrées avec l'écouteur d'événements
-prenom.addEventListener('input', () => checkInputValue(regexNom, prenom, message.MessPrenom));
-nom.addEventListener('input', () => checkInputValue(regexNom, nom, message.MessNom));
-email.addEventListener('input', () => checkInputValue(regexEmail, email, message.MessEmail));
-messagePourPhotographe.addEventListener('input', () => checkInputValue(regexMessagePourPhotographe, messagePourPhotographe, message.MessMessagePourPhotographe));
-
-// Validation du formulaire
-function validate(evenement) {
-  evenement.preventDefault();
-
-  try {
-      const EmailOk = checkInputValue(regexEmail, email, message.MessEmail);
-      const NomOk = checkInputValue(regexNom, nom, message.MessNom);
-      const PrenomOk = checkInputValue(regexNom, prenom, message.MessPrenom);
-      const MessageOk = checkInputValue(/^.{10,100}$/, messagePourPhotographe, message.MessMessagePourPhotographe);
-
-      if (PrenomOk && NomOk && EmailOk && MessageOk) {
-        console.log(prenom.value);
-        console.log(nom.value);
-        console.log(email.value);
-        console.log(messagePourPhotographe.value);
-        alert('Message envoyé !');
+// Exportation de la fonction validateForm
+export const validateForm = () => {
+    // Sélection du formulaire dans la modale
+    const form = document.querySelector('#contactForm');
+    // Sélection des champs du formulaire
+    const Prenom = document.querySelector("#prenom");
+    const Nom = document.querySelector("#nom");
+    const email = document.querySelector("#email");
+    const message = document.querySelector("#message");
+  
+    // Ajout d'un écouteur d'événement 'input' pour chaque modification dans le formulaire
+    form.addEventListener('input', () => displayCustomMessage());
+  
+    // Ajout d'un écouteur d'événement 'submit' pour gérer la soumission du formulaire
+    form.addEventListener('submit', e => {
+      e.preventDefault(); // Empêche l'envoi par défaut du formulaire
+      // Si le formulaire n'est pas valide, affiche les messages d'erreur
+      if (!form.checkValidity()) displayCustomMessage();
+      else {
+        // Si le formulaire est valide, crée un objet contenant les données du formulaire
+        const formDatas = {
+          Prenom: Prenom.value,
+          Nom: Nom.value,
+          email: email.value,
+          message: message.value,
+        };
+        console.log(JSON.stringify(formDatas)); // Affiche les données dans la console (peut être remplacé par un envoi à un serveur)
+        // Réinitialise les champs du formulaire
+        document.querySelectorAll('.formField').forEach(input => input.classList.remove('valid'));
         form.reset();
-        closeModal();
       }
-  } catch(error) {
-      console.error('Une erreur s\'est produite lors de la validation du formulaire :', error);
-  }
-}
-
-form.addEventListener('submit', validate);
-
-// form.addEventListener('submit', e => validate(e));
+    });
+  
+    // Fonction pour vérifier la validité d'un champ donné
+    const checkInputValidity = (input, regex) => {
+      const errorMessage = input.dataset.error; // Message d'erreur personnalisé
+      const messageProvider = input.nextElementSibling; // Élément pour afficher le message d'erreur
+      const isValid = regex.test(input.value); // Vérifie la valeur du champ par rapport au regex
+  
+      if (isValid) {
+        messageProvider.innerHTML = ""; // Efface le message d'erreur
+        messageProvider.removeAttribute("role");
+        input.removeAttribute("aria-invalid");
+      } else {
+        messageProvider.innerHTML = errorMessage; // Affiche le message d'erreur
+        messageProvider.setAttribute("role", "alert");
+        input.setAttribute("aria-invalid", "true");
+      }
+  
+      input.classList.toggle('invalid', !isValid); // Ajoute/enlève la classe 'invalid' en fonction de la validité
+      input.classList.toggle('valid', isValid); // Ajoute/enlève la classe 'valid' en fonction de la validité
+    };
+  
+    // Fonction pour afficher les messages d'erreur personnalisés pour chaque champ
+    const displayCustomMessage = () => {
+      // Définition des regex pour la validation des champs
+      const regexName = /^([A-Za-z|\s]{3,15})?([-]{0,1})?([A-Za-z|\s]{3,15})$/;
+      const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      const regexMessage = /^[A-Za-z0-9|\s]{10,100}$/;
+  
+      // Vérification de la validité de chaque champ
+      checkInputValidity(Nom, regexName);
+      checkInputValidity(Prenom, regexName);
+      checkInputValidity(email, regexEmail);
+      checkInputValidity(message, regexMessage);
+    };
+  };
+  
