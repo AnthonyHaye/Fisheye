@@ -9,7 +9,7 @@ export default class Api {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const data = await response.json();
+            const data = await response.json();            
             return data;
         } catch (err) {
             throw new Error(err);
