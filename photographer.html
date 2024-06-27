@@ -23,13 +23,13 @@
     <main id="main">
         <div class="photograph-header" role="region" aria-labelledby="photograph-header-title">
             <h2 id="photograph-header-title" class="sr-only">Détails du photographe</h2>            
-            <button class="contact_button" aria-label="Contactez-moi Ellie-Rose Wilkens">Contactez-moi</button>
+            <button class="contact_button" aria-label="Contactez-moi">Contactez-moi</button>
         </div>
         <div class="main_content_trie" role="region" aria-labelledby="trie-section-title">
             <h2 id="trie-section-title">Trier par</h2>
             <div class="trie_section">
-                <div class="deroule" role="combobox" aria-expanded="false" aria-haspopup="listbox">
-                    <button class="btn_liste" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter-options" aria-label="Trier par">
+                <div class="deroule" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="bouton_liste">
+                    <button class="btn_liste" id="bouton_liste" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter-options" aria-label="Trier par">
                         <span id="current_filter">Titre</span>
                         <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
                     </button>
@@ -68,19 +68,19 @@
             <form novalidate id="contactForm">
                 <div class="formData">
                     <label for="prenom">Prénom</label>
-                    <input class="text-control" id="prenom" name="prenom" type="text">                    
+                    <input class="text-control" id="prenom" name="prenom" type="text" aria-labelledby="prenom">
                 </div>
                 <div class="formData">
                     <label for="nom">Nom</label>
-                    <input class="text-control" id="nom" name="nom" type="text">
+                    <input class="text-control" id="nom" name="nom" type="text" aria-labelledby="nom">
                 </div>
                 <div class="formData">
                     <label for="email">Email</label>
-                    <input class="text-control" id="email" name="email" type="email">
+                    <input class="text-control" id="email" name="email" type="email" aria-labelledby="email">
                 </div>
                 <div class="formData">
                     <label for="message">Message</label>
-                    <textarea class="text-control" id="message" name="message"></textarea>
+                    <textarea class="text-control" id="message" name="message" aria-labelledby="message"></textarea>
                 </div>
                 <button type="submit" class="contact_button" aria-label="Envoyer le message">Envoyer</button>
             </form>
@@ -90,17 +90,9 @@
     <div id="player_modal" class="modalPlayer" aria-hidden="true" role="dialog" aria-labelledby="player-modal-title">
         <div class="modal-content">
             <h2 id="player-modal-title" class="sr-only">Visionneuse de médias</h2>
-            <!-- Contenu de la modal sera ajouté ici par JavaScript -->
         </div>
     </div>
-    <!-- Models -->
-    <script type="module" src="scripts/models/Photographer.js"></script>
-    <script type="module" src="scripts/models/media.js"></script>
-    <!-- Template -->
-    <script type="module" src="scripts/templates/PlayerModal.js"></script>
     <!-- pages -->
     <script type="module" src="scripts/pages/photographerPage.js"></script>
-    <!-- utils -->
-    <script type="module" src="scripts/utils/contactForm.js"></script>
 </body>
 </html>

@@ -1,5 +1,3 @@
-// contactForm.js
-
 // Ajouter un écouteur d'événement pour ouvrir le modal de contact
 document.querySelector('.contact_button').addEventListener('click', () => {
   const photographerName = document.querySelector('.contact_button').dataset.photographerName;

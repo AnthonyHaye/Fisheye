@@ -18,7 +18,7 @@ export function setupDropdown(mediaObjects, updateMediaCallback) {
 
             // Ajouter movieCardWithPlayer après le tri
             const sectionPhotographe = document.querySelector(".photographer_section");
-            sectionPhotographe.querySelectorAll('.lienMedia').forEach((mediaElement, index) => {
+            sectionPhotographe.querySelectorAll('.lienMedia').forEach((mediaElement) => {
                 movieCardWithPlayer(mediaElement, sortedMedia);
             });
 
