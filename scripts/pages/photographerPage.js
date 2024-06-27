@@ -23,7 +23,7 @@ async function main() {
 
         // Recherche des données du photographe correspondant à l'ID
         const photographerData = data.photographers.find(p => p.id === photographerId);
-        console.log(photographerData);
+        //console.log(photographerData);
         const mediaData = data.media.filter(m => m.photographerId === photographerId); // Filtrage des médias du photographe
 
         if (!photographerData) {

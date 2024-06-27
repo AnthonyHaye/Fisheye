@@ -3,7 +3,7 @@ import { displayModal } from './contactForm.js'; // Importation de la fonction p
 
 // Fonction pour mettre à jour l'en-tête du photographe sur la page
 export function updatePhotographerHeader(photographer) {
-    console.log(photographer); 
+    //console.log(photographer); 
 
     const detailsSection = document.querySelector(".photograph-header"); // Sélection de la section de l'en-tête du photographe dans le DOM
     const contactBtn = document.querySelector(".contact_button"); // Sélection du bouton de contact dans le DOM
