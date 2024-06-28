@@ -9,15 +9,12 @@
 a:focus,
 button:focus,
 .like-button:focus,
-.photographe_photoVideo:focus {
+.lienMedia:focus {
     outline: 5px solid var(--color-primary);      
     outline-offset: 5px;
 }
 
-.cardMedia:focus-within {
-    outline: 2px solid orange; /* Couleur et largeur de l'encadré */
-    outline-offset: 2px; /* Espacement entre l'élément et l'outline */
-}
+    
 
 body {
     font-family: "DM Sans", sans-serif;

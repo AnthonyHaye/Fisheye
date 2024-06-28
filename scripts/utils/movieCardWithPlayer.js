@@ -1,19 +1,23 @@
-import PlayerModal from '../templates/PlayerModal.js'; // Importation de la classe PlayerModal pour gérer l'affichage du lecteur de médias
+import PlayerModal from '../templates/PlayerModal.js';
 
-// Fonction pour ajouter un lecteur de médias à une carte média
-export function movieCardWithPlayer(cardMedia, mediaList) {
-    // Ajout d'un gestionnaire d'événements au clic sur la carte média
-    cardMedia.addEventListener('click', (event) => {
-        event.preventDefault(); // Empêche le comportement par défaut du lien
+export function movieCardWithPlayer(element, mediaList) {
+    // Ajoute un événement click sur l'élément pour ouvrir le modal
+    element.addEventListener('click', (event) => {
+        event.preventDefault();
+        const mediaSrc = event.currentTarget.dataset.media;
+        const media = mediaList.find(m => m.image === mediaSrc || m.video === mediaSrc);
 
-        // Recherche du média correspondant dans la liste des médias
-        const media = mediaList.find(m => m.image === cardMedia.dataset.media || m.video === cardMedia.dataset.media);
+        if (media) {
+            const player = new PlayerModal(media, mediaList);
+            player.render();
+        }
+    });
 
-        // Création d'une nouvelle instance de PlayerModal avec le média trouvé et la liste des médias
-        const player = new PlayerModal(media, mediaList);
-
-        // Affichage du lecteur de médias
-        player.render();
+    // Ajoute un événement keydown sur l'élément pour ouvrir le modal avec la touche "Entrée"
+    element.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            element.click();
+        }
     });
 }
-

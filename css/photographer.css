@@ -51,6 +51,7 @@
 .cardMedia{
     width:100%;
     height: 300px;
+    cursor: pointer;
 }
 
 .photographe_photoVideo {
