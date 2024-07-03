@@ -54,26 +54,26 @@ export default class PlayerModal {
         const isVideo = media.video && media.video.endsWith('.mp4'); 
         const mediaElement = isVideo ?  
             `<video height="700" width="900" controls>
-                <source src="${media.video}" type="video/mp4">
+                <source src="${media.video}"  type="video/mp4">
              </video>` :
-            `<img class="diaporama" src="${media.image}" height="700" width="900" />`; 
+            `<img class="diaporama" src="${media.image}"  height="700" width="900" />`; 
         const mediaTitle = media.title || ''; 
         const photographerName = media.photographerName || ''; 
         const description = `${mediaTitle} par ${photographerName}`; 
 
         const player = `
-            <div class="player">
+            <div class="player" role="dialog" aria-labelledby="media-title" aria-describedby="media-description">
                 ${mediaElement}
-                <p class="media-title">${mediaTitle}</p>
-                <p class="media-description">${description}</p> <!-- Description pour l'accessibilité -->
-                <button class="close-btn">X</button>
-                <button class="prev-btn"><</button>
-                <button class="next-btn">></button>
-            </div>
-        `;
+                <p id="media-title" class="media-title">${mediaTitle}</p>
+                <p id="media-description" class="media-description">${description}</p>
+                <button class="close-btn" aria-label="Fermer le lecteur">X</button>
+                <button class="prev-btn" aria-label="Média précédent"><</button>
+                <button class="next-btn" aria-label="Média suivant">></button>
+            </div>`;
+
         this.$wrapper.innerHTML = player; 
         this.onCloseButton(); 
-        this.onNextButton(); 
+        this.onNextButton();        
         this.onPrevButton(); 
     }
 
